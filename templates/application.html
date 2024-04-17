@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}
+APPLICATION
+{% endblock title %}
+
+{% block body %}
+<div class="p-3 mb-2 bg-secondary bs-gradient">
+<div class="container">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-15">
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for categories, messages in messages %}
+    
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+      {{messages}}
+    
+      <button type = "button" class ="close" data-dismiss="alert" aria-label ="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+<br>
+
+<form action="/application" method="post">
+
+<div class="bg-light text-white p-5">
+  <h2 class="text-center text-white bg-primary">Adoption application form</h2>
+  <br>
+<div class="form-group mb-4">
+    <input type="text" class="form-control" name="name" placeholder="full name" required>
+</div>
+<div class="form-group mb-4">
+    <input type="date" class="form-control" name="dob" placeholder="dob" required>
+</div>
+<div class="form-group mb-4">
+    <input type="text" class="form-control" name="addr" placeholder="permanent address" required>
+</div>
+<div class="form-group mb-4">
+    <input type="number" class="form-control" name="phno" placeholder="phone number" required>
+</div>
+<div class="form-group mb-4">
+    <input type="number" class="form-control" id="idno" name="idno" placeholder="id number" required>
+</div>
+<div class="form-group mb-4">
+    <input type="text" class="form-control" name="ins" placeholder="type of health insurance" required>
+</div>
+<div class="form-group mb-4">
+    <select class ="form-control" id="status" name="status" required>
+      <option selected>status</option>
+      <option value="Single">Single</option>
+      <option value="Married">Married</option>
+      <option value="Divorced">Divorced</option>
+      <option value="Others">Others</option>
+    </select>
+ 
+  </div>
+<div class="form-group mb-4">
+    <input type="text" class="form-control" name="job" placeholder="job / company name" required>
+</div>
+<div class="form-group mb-4">
+    <input type="text" class="form-control" name="det" placeholder="job details" required>
+</div>
+<div class="form-group mb-4">
+    <input type="text" class="form-control" name="rs" placeholder="Reason for adoption" required>
+</div>
+
+<div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+    <label class="form-check-label text-black"  for="exampleCheck1">I , hereby declare that the information provided in this application is true and accurate to the best of my knowledge. I understand that any false or misleading information may result in the rejection of my application or, if discovered after acceptance, my dismissal. I also understand that this declaration is binding and may be used as evidence in any legal proceedings.</label>
+  </div>
+<div class="d-grid gap-2">
+    <button class="btn btn-primary" type="submit" >SUBMIT</button>
+    
+  </div>
+  </div>
+
+</form>
+
+
+</div>
+<div class="col-md-4"></div>
+
+</div>
+
+</div>
+</div>
+
+
+{% endblock body %}

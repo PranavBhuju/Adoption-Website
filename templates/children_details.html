@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}
+CHILDREN DETAILS
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for categories, messages in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  {{messages}}
+
+  <button type = "button" class ="close" data-dismiss="alert" aria-label ="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<table class="table table-hover">
+    <thead class="table-primary">
+        <tr>
+          <th scope="col">CID</th>
+          
+          <th scope="col">NAME</th>
+          <th scope="col">DOB</th>
+          <th scope="col">AGE</th>
+          <th scope="col">SEX</th>
+          
+          <th scope="col">SIBLINGS</th>
+          
+          <th scope="col">DISABLIILY</th>
+          <th scope="col">EDIT</th>
+          <th scope="col">DELETE</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in query %}
+        <tr>
+          <th scope="row">{{post.cid}}</th>
+          
+          <td>{{post.name}}</td>
+          <td>{{post.dob}}</td>
+          <td>{{post.age}}</td>
+          <td>{{post.sex}}</td>
+          <td>{{post.nos}}</td>
+          <td>{{post.dis}}</td>
+          
+          <td><a href="/edit/{{post.cid}}"><button class="btn btn-success">Edit</button></a></td>
+          <td><a href="/delete/{{post.cid}}"><button onclick="return confirm('Are you sure to Delete data');" class="btn btn-danger">Delete</button></a></td>
+        </tr>
+        
+          
+        {% endfor %}
+      </tbody>
+  </table>
+{% endblock body %}
